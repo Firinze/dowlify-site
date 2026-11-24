@@ -1,0 +1,31 @@
+---
+import config from "@/config/config.json";
+import { withBase } from "@/lib/utils/href";
+import ImageMod from "./ImageMod.astro";
+
+interface Props {
+  src?: string;
+  variant?: "header" | "footer";
+}
+
+const { src, variant = "header" } = Astro.props;
+const { logo, logo_width, logo_height, logo_text, title } = config.site;
+const isFooter = variant === "footer";
+const resolvedSrc = src ?? (isFooter ? "/images/logo-sombre.svg" : logo);
+const w = isFooter ? 195 : Number(String(logo_width).replace("px", "")) || 32;
+const h = isFooter ? 60 : Number(String(logo_height).replace("px", "")) || 32;
+---
+
+<a
+  href={withBase("/")}
+  class="navbar-brand inline-flex items-center gap-2.5 text-white font-semibold tracking-tight"
+>
+  <ImageMod
+    src={resolvedSrc}
+    class={isFooter ? "h-14 w-auto inline-block" : "h-8 w-8 inline-block"}
+    width={w}
+    height={h}
+    alt={isFooter ? "Dowlify par Digiplex" : title}
+  />
+  {!isFooter && <span class="text-xl text-white font-semibold">{logo_text}</span>}
+</a>

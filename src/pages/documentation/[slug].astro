@@ -1,0 +1,185 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/components/PageHeader.astro";
+import { DOC_PAGES, type DocPage } from "@/data/docs";
+import { withBase } from "@/lib/utils/href";
+
+export function getStaticPaths() {
+  return DOC_PAGES.map((doc, index) => ({
+    params: { slug: doc.slug },
+    props: {
+      doc,
+      prevDoc: index > 0 ? DOC_PAGES[index - 1] : null,
+      nextDoc: index < DOC_PAGES.length - 1 ? DOC_PAGES[index + 1] : null,
+    },
+  }));
+}
+
+interface Props {
+  doc: DocPage;
+  prevDoc: DocPage | null;
+  nextDoc: DocPage | null;
+}
+
+const { doc, prevDoc, nextDoc } = Astro.props;
+---
+
+<Base
+  title={`${doc.title} · Documentation Dowlify`}
+  description={doc.summary}
+>
+  <PageHeader
+    title={`${doc.title}`}
+    subtitle={doc.summary}
+  />
+
+  <section class="section pt-8 pb-20">
+    <div class="container max-w-6xl">
+      <!-- Navigation mobile repliable -->
+      <details class="lg:hidden mb-6 bg-light border border-border rounded-2xl p-4">
+        <summary class="text-sm font-semibold text-white cursor-pointer">
+          Guides de documentation ({doc.title})
+        </summary>
+        <nav class="mt-3 pt-3 border-t border-border flex flex-col gap-2" aria-label="Navigation documentation">
+          {
+            DOC_PAGES.map((item) => (
+              <a
+                href={withBase(`/documentation/${item.slug}`)}
+                class={`px-3 py-2 rounded-xl text-sm ${
+                  item.slug === doc.slug
+                    ? "bg-primary/20 text-primary font-semibold"
+                    : "text-text hover:text-white"
+                }`}
+              >
+                {item.title}
+              </a>
+            ))
+          }
+        </nav>
+      </details>
+
+      <div class="grid lg:grid-cols-[270px_minmax(0,1fr)] gap-8 items-start">
+        <!-- Barre latérale desktop -->
+        <aside class="hidden lg:block sticky top-28 bg-light border border-border rounded-3xl p-6">
+          <a
+            href={withBase("/documentation")}
+            class="text-xs font-semibold uppercase tracking-wider text-text-dark hover:text-white block mb-4"
+          >
+            Toute la documentation
+          </a>
+          <nav class="flex flex-col gap-1.5" aria-label="Sommaire de la documentation">
+            {
+              DOC_PAGES.map((item) => (
+                <a
+                  href={withBase(`/documentation/${item.slug}`)}
+                  class={`px-3.5 py-2.5 rounded-xl text-sm transition-colors ${
+                    item.slug === doc.slug
+                      ? "bg-primary/20 text-primary font-semibold"
+                      : "text-text hover:bg-body/60 hover:text-white"
+                  }`}
+                >
+                  {item.title}
+                </a>
+              ))
+            }
+          </nav>
+          <div class="mt-6 pt-5 border-t border-border">
+            <a
+              href={withBase("/versions")}
+              class="text-sm text-text-dark hover:text-primary underline block"
+            >
+              Versions et SHA-256
+            </a>
+          </div>
+        </aside>
+
+        <!-- Contenu du guide -->
+        <article class="bg-light border border-border rounded-3xl p-6 sm:p-10 space-y-8 min-w-0">
+          {
+            doc.sections.map((section) => (
+              <div class="space-y-4">
+                <h2 class="text-h5 font-bold text-white">{section.heading}</h2>
+
+                {section.paragraphs &&
+                  section.paragraphs.map((p) => (
+                    <p class="text-text leading-relaxed">{p}</p>
+                  ))}
+
+                {section.steps && (
+                  <ol class="list-decimal pl-6 space-y-2.5 text-text">
+                    {section.steps.map((step) => (
+                      <li>{step}</li>
+                    ))}
+                  </ol>
+                )}
+
+                {section.bullets && (
+                  <ul class="list-disc pl-6 space-y-2.5 text-text">
+                    {section.bullets.map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
+                )}
+
+                {section.table && (
+                  <div class="overflow-x-auto rounded-2xl border border-border bg-body">
+                    <table class="w-full text-left border-collapse text-sm">
+                      <thead>
+                        <tr class="border-b border-border bg-light/50">
+                          {section.table.headers.map((h) => (
+                            <th class="py-3 px-4 font-semibold text-white">{h}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {section.table.rows.map((row) => (
+                          <tr class="border-b border-border last:border-b-0">
+                            <td class="py-3 px-4 font-mono text-primary whitespace-nowrap">
+                              {row[0]}
+                            </td>
+                            <td class="py-3 px-4 text-text">{row[1]}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                )}
+              </div>
+            ))
+          }
+
+          <!-- Pagination -->
+          <div class="pt-6 border-t border-border flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+            {
+              prevDoc ? (
+                <a
+                  href={withBase(`/documentation/${prevDoc.slug}`)}
+                  class="btn btn-outline text-center text-sm"
+                >
+                  Précédent : {prevDoc.title}
+                </a>
+              ) : (
+                <a
+                  href={withBase("/documentation")}
+                  class="btn btn-outline text-center text-sm"
+                >
+                  Index documentation
+                </a>
+              )
+            }
+            {
+              nextDoc && (
+                <a
+                  href={withBase(`/documentation/${nextDoc.slug}`)}
+                  class="btn btn-primary text-center text-sm"
+                >
+                  Suivant : {nextDoc.title}
+                </a>
+              )
+            }
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</Base>

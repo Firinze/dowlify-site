@@ -1,0 +1,72 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/components/PageHeader.astro";
+import { DOC_PAGES } from "@/data/docs";
+import { LATEST_RELEASE } from "@/data/releases";
+import { withBase } from "@/lib/utils/href";
+---
+
+<Base
+  title="Documentation · Dowlify"
+  description="Guides pratiques pour installer Dowlify sur Windows, connecter Microsoft Edge et Google Chrome, planifier vos téléchargements et utiliser les raccourcis."
+>
+  <PageHeader
+    title="Documentation <strong>Dowlify</strong>"
+    subtitle="Tout ce dont vous avez besoin pour installer Dowlify, connecter vos navigateurs et maîtriser chaque fonctionnalité sans jargon."
+  />
+
+  <section class="section pt-8 pb-20">
+    <div class="container max-w-6xl space-y-12">
+      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+        {
+          DOC_PAGES.map((doc, idx) => (
+            <a
+              href={withBase(`/documentation/${doc.slug}`)}
+              class="bg-light/80 hover:bg-light border border-border hover:border-primary rounded-3xl p-7 flex flex-col justify-between transition-all duration-200 group"
+            >
+              <div>
+                <p class="text-xs font-semibold text-primary uppercase tracking-wider mb-2 tabular-nums">
+                  {String(idx + 1).padStart(2, "0")} · {doc.category}
+                </p>
+                <h2 class="text-h5-sm font-bold text-white group-hover:text-primary transition-colors mb-3">
+                  {doc.title}
+                </h2>
+                <p class="text-sm text-text leading-relaxed">
+                  {doc.summary}
+                </p>
+              </div>
+              <span class="mt-6 text-sm font-medium text-primary inline-flex items-center gap-1.5">
+                Lire le guide
+              </span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="bg-light border border-border rounded-3xl p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
+        <div>
+          <h2 class="text-h5-sm font-bold text-white mb-1">
+            Besoin de l'installeur ou des notes techniques ?
+          </h2>
+          <p class="text-sm text-text">
+            Téléchargez la dernière version {LATEST_RELEASE.version} ou consultez l'historique complet des modifications.
+          </p>
+        </div>
+        <div class="flex flex-wrap gap-3 shrink-0">
+          <a
+            href={LATEST_RELEASE.downloadUrl}
+            data-dowlify-download
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            Télécharger Dowlify
+          </a>
+          <a href={withBase("/versions")} class="btn btn-outline">
+            Voir les versions
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

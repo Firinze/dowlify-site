@@ -1,0 +1,27 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/components/PageHeader.astro";
+import { withBase } from "@/lib/utils/href";
+
+const target = withBase("/documentation/demarrage");
+---
+
+<Base
+  title="Documentation · Dowlify"
+  description="Accéder à la documentation complète de Dowlify pour Windows."
+>
+  <script is:inline define:vars={{ target }}>
+    window.location.replace(target);
+  </script>
+  <PageHeader
+    title="Documentation <strong>Dowlify</strong>"
+    subtitle="Les guides d'utilisation ont été regroupés dans l'espace Documentation."
+  />
+  <section class="section pt-8 pb-20 text-center">
+    <div class="container">
+      <a href={target} class="btn btn-primary">
+        Ouvrir la documentation
+      </a>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,26 @@
+---
+enable: true
+badge: ""
+title: "Découvrez l'application en <strong>captures réelles</strong>"
+items:
+  - image: "/images/screenshots/dowlify-popup-confirm.png"
+    number: "01"
+    title: "CONFIRMATION RAPIDE"
+    content: "À chaque lien détecté dans Edge ou Chrome, vérifiez le nom du fichier, la taille estimée et le dossier de destination avant de démarrer."
+  - image: "/images/screenshots/dowlify-popup-segmented.png"
+    number: "02"
+    title: "PROGRESSION DÉTAILLÉE"
+    content: "Visualisez en direct la vitesse, le temps restant et la progression de chaque segment sans encombrer la fenêtre principale."
+  - image: "/images/screenshots/dowlify-add-download.png"
+    number: "03"
+    title: "AJOUT DIRECT"
+    content: "Collez un lien manuellement avec Ctrl+N, choisissez la file d'attente ou la priorité, et laissez Dowlify classer votre fichier."
+  - image: "/images/screenshots/dowlify-schedule-queues.png"
+    number: "04"
+    title: "PLANIFICATION"
+    content: "Définissez vos plages horaires nocturnes, les jours actifs et l'action automatique en fin de file comme la mise en veille du PC."
+  - image: "/images/screenshots/dowlify-rules.png"
+    number: "05"
+    title: "RÈGLES ET DOSSIERS"
+    content: "Automatisez le rangement par extension, par site web ou par priorité pour ne plus jamais chercher où un fichier a été enregistré."
+---

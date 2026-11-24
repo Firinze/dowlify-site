@@ -1,0 +1,122 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/components/PageHeader.astro";
+import { LATEST_RELEASE, RELEASES } from "@/data/releases";
+import { withBase } from "@/lib/utils/href";
+---
+
+<Base
+  title="Versions et mises à jour · Dowlify"
+  description="Téléchargez la dernière version de Dowlify pour Windows, consultez toutes les versions publiées et lisez les notes techniques."
+>
+  <PageHeader
+    title="Versions de <strong>Dowlify</strong>"
+    subtitle="Téléchargez la dernière version stable pour Windows ou consultez l'historique complet des nouveautés, améliorations et correctifs."
+  />
+
+  <section class="section pt-8 pb-20">
+    <div class="container max-w-5xl space-y-12">
+      <!-- Dernière version -->
+      <div class="bg-light border border-border rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div class="space-y-2 max-w-2xl">
+            <p class="text-sm font-semibold text-primary">
+              Dernière version stable · {LATEST_RELEASE.date}
+            </p>
+            <h2 class="text-h4 font-bold text-white">
+              Dowlify {LATEST_RELEASE.version}
+            </h2>
+            <p class="text-text text-base">
+              {LATEST_RELEASE.summary}
+            </p>
+            <p class="text-sm text-text-dark tabular-nums">
+              {LATEST_RELEASE.platform} · {LATEST_RELEASE.fileName} · {LATEST_RELEASE.sizeDisplay}
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a
+              href={LATEST_RELEASE.downloadUrl}
+              data-dowlify-download
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-primary text-center"
+            >
+              Télécharger {LATEST_RELEASE.version}
+            </a>
+            <a
+              href={withBase(`/versions/${LATEST_RELEASE.slug}`)}
+              class="btn btn-outline text-center"
+            >
+              Notes de version
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Historique de toutes les versions -->
+      <div class="space-y-6">
+        <h2 class="text-h4 font-bold text-white">Toutes les versions publiées</h2>
+
+        <div class="space-y-4">
+          {
+            RELEASES.map((release) => (
+              <article class="bg-light/70 border border-border rounded-2xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+                <div class="space-y-1.5">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <h3 class="text-h6 font-bold text-white tabular-nums">
+                      Version {release.version}
+                    </h3>
+                    <span class="text-xs px-2.5 py-1 rounded-full bg-primary/20 text-primary font-medium">
+                      {release.channel}
+                    </span>
+                    <span class="text-sm text-text-dark">{release.date}</span>
+                  </div>
+                  <p class="text-sm text-text">{release.summary}</p>
+                  <p class="text-xs text-text-dark tabular-nums">
+                    {release.platform} · {release.sizeDisplay} ({release.sizeBytes})
+                  </p>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-3 shrink-0">
+                  <a
+                    href={release.downloadUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn-primary btn-sm px-5 py-2.5 rounded-full"
+                  >
+                    Télécharger
+                  </a>
+                  <a
+                    href={withBase(`/versions/${release.slug}`)}
+                    class="btn btn-outline btn-sm px-5 py-2.5 rounded-full"
+                  >
+                    Détails et SHA-256
+                  </a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Mises à jour automatiques -->
+      <div class="bg-light/60 border border-border rounded-3xl p-6 sm:p-8 space-y-4">
+        <h2 class="text-h5 font-bold text-white">Comment fonctionnent les mises à jour dans l'application</h2>
+        <p class="text-text text-sm sm:text-base">
+          Dowlify vérifie automatiquement la disponibilité d'une nouvelle version au démarrage (réglable à tout moment dans Paramètres).
+        </p>
+        <ol class="list-decimal pl-5 space-y-2 text-sm sm:text-base text-text">
+          <li>Lorsqu'une mise à jour est prête, une notification Windows discrète et une fenêtre d'information apparaissent.</li>
+          <li>Si vous acceptez la mise à jour, le nouvel installeur est vérifié par empreinte SHA-256 avant toute installation.</li>
+          <li>Votre historique, vos règles et vos préférences enregistrés dans <code>%LOCALAPPDATA%\Dowlify</code> sont conservés.</li>
+        </ol>
+        <div class="pt-2 flex flex-wrap gap-3">
+          <a href={withBase("/documentation/mises-a-jour")} class="text-primary underline text-sm font-medium">
+            Lire la documentation sur les mises à jour
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

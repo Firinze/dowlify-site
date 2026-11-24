@@ -1,0 +1,39 @@
+{
+  "site": {
+    "title": "Dowlify",
+    "base_url": "https://dowlify.digiplex.site",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/favicon.svg",
+    "logo": "/images/dowlify-icon.svg",
+    "logo_width": "32",
+    "logo_height": "32",
+    "logo_text": "Dowlify"
+  },
+  "settings": {
+    "sticky_header": true
+  },
+  "params": {
+    "contact_form_action": "#",
+    "checklist_form_action": "#",
+    "apply_form_action": "#",
+    "copyright": "Digiplex Agency · Cotonou, Bénin · Gestionnaire de téléchargement gratuit pour Windows.",
+    "footer_tagline": "Téléchargez vos fichiers plus vite quand le site le permet, reprenez sans recommencer et gardez tout sur votre PC.",
+    "footer_email": "",
+    "footer_phone": ""
+  },
+  "navigation_button": {
+    "enable": true,
+    "label": "Télécharger",
+    "link": "https://github.com/Firinze/dowlify-site/releases/latest/download/DowlifySetup_1.0.0_x64.exe"
+  },
+  "google_tag_manager": {
+    "enable": false,
+    "gtm_id": ""
+  },
+  "metadata": {
+    "meta_author": "Digiplex Agency",
+    "meta_image": "/images/screenshots/dowlify-main.png",
+    "meta_description": "Dowlify, le gestionnaire de téléchargement gratuit pour Windows, connecté à Microsoft Edge et Google Chrome."
+  }
+}

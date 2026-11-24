@@ -1,0 +1,133 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/components/PageHeader.astro";
+import { RELEASES, type ReleaseEntry } from "@/data/releases";
+import { withBase } from "@/lib/utils/href";
+
+export function getStaticPaths() {
+  return RELEASES.map((release) => ({
+    params: { slug: release.slug },
+    props: { release },
+  }));
+}
+
+interface Props {
+  release: ReleaseEntry;
+}
+
+const { release } = Astro.props;
+---
+
+<Base
+  title={`Dowlify ${release.version} · Notes de version`}
+  description={`Notes techniques de Dowlify ${release.version} : nouveautés, améliorations, correctifs et vérification SHA-256.`}
+>
+  <PageHeader
+    title={`Version <strong>${release.version}</strong>`}
+    subtitle={release.summary}
+  />
+
+  <section class="section pt-8 pb-20">
+    <div class="container max-w-4xl space-y-8">
+      <div>
+        <a href={withBase("/versions")} class="text-sm text-primary underline">
+          Toutes les versions
+        </a>
+      </div>
+
+      <div class="bg-light border border-border rounded-3xl p-6 sm:p-10 space-y-8">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <p class="text-sm text-primary font-semibold mb-1">
+              {release.channel} · Publiée le {release.date}
+            </p>
+            <h2 class="text-h4 font-bold text-white tabular-nums">
+              Dowlify {release.version}
+            </h2>
+          </div>
+          <a
+            href={release.downloadUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary text-center"
+          >
+            Télécharger {release.version}
+          </a>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-sm">
+            <tbody>
+              <tr class="border-b border-border">
+                <th class="py-3 pr-4 font-semibold text-white">Version</th>
+                <td class="py-3 text-text tabular-nums">{release.version}</td>
+              </tr>
+              <tr class="border-b border-border">
+                <th class="py-3 pr-4 font-semibold text-white">Date</th>
+                <td class="py-3 text-text">{release.date}</td>
+              </tr>
+              <tr class="border-b border-border">
+                <th class="py-3 pr-4 font-semibold text-white">Plateforme</th>
+                <td class="py-3 text-text">{release.platform}</td>
+              </tr>
+              <tr class="border-b border-border">
+                <th class="py-3 pr-4 font-semibold text-white">Fichier d'installation</th>
+                <td class="py-3 text-text font-mono break-all">{release.fileName}</td>
+              </tr>
+              <tr>
+                <th class="py-3 pr-4 font-semibold text-white">Taille exacte</th>
+                <td class="py-3 text-text tabular-nums">
+                  {release.sizeDisplay} ({release.sizeBytes})
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="space-y-8 text-text">
+          <div>
+            <h3 class="text-h5-sm font-bold text-white mb-3">Ajouté</h3>
+            <ul class="list-disc pl-6 space-y-2">
+              {release.added.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-h5-sm font-bold text-white mb-3">Amélioré</h3>
+            <ul class="list-disc pl-6 space-y-2">
+              {release.improved.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-h5-sm font-bold text-white mb-3">Corrigé</h3>
+            <ul class="list-disc pl-6 space-y-2">
+              {release.fixed.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+
+          <div class="border-t border-border pt-6">
+            <h3 class="text-h5-sm font-bold text-white mb-3">Vérification d'intégrité (SHA-256)</h3>
+            <p class="mb-3 text-sm text-text">
+              Empreinte SHA-256 attendue pour <code>{release.fileName}</code> :
+            </p>
+            <pre class="bg-body border border-border rounded-xl p-4 text-xs text-white overflow-x-auto select-all mb-4">{release.sha256}</pre>
+            <p class="mb-2 text-sm text-text">
+              Commande PowerShell pour vérifier votre fichier téléchargé :
+            </p>
+            <pre class="bg-body border border-border rounded-xl p-4 text-xs text-white overflow-x-auto select-all">{`Get-FileHash "$env:USERPROFILE\\Downloads\\${release.fileName}" -Algorithm SHA256`}</pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <a href={withBase("/versions")} class="btn btn-outline">
+          Toutes les versions
+        </a>
+        <a href={withBase("/documentation/demarrage")} class="btn btn-outline">
+          Guide de démarrage
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

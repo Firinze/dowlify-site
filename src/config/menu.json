@@ -1,0 +1,73 @@
+{
+  "main": [
+    {
+      "name": "Fonctionnalités",
+      "url": "/#fonctionnalites"
+    },
+    {
+      "name": "Aperçus",
+      "url": "/#apercus"
+    },
+    {
+      "name": "Versions",
+      "url": "/versions"
+    },
+    {
+      "name": "Documentation",
+      "url": "/documentation"
+    },
+    {
+      "name": "Confidentialité",
+      "url": "/confidentialite"
+    }
+  ],
+  "footer_col_1_title": "Produit",
+  "footer_col_2_title": "Documentation",
+  "footer_col_3_title": "Légal",
+  "footer_primary": [
+    {
+      "name": "Accueil",
+      "url": "/"
+    },
+    {
+      "name": "Fonctionnalités",
+      "url": "/#fonctionnalites"
+    },
+    {
+      "name": "Aperçus de l'application",
+      "url": "/#apercus"
+    },
+    {
+      "name": "Versions",
+      "url": "/versions"
+    }
+  ],
+  "footer_resource": [
+    {
+      "name": "Guide de démarrage",
+      "url": "/documentation/demarrage"
+    },
+    {
+      "name": "Extension Edge et Chrome",
+      "url": "/documentation/navigateurs"
+    },
+    {
+      "name": "Raccourcis clavier",
+      "url": "/documentation/raccourcis"
+    },
+    {
+      "name": "Questions fréquentes",
+      "url": "/#faq"
+    }
+  ],
+  "footer_legal": [
+    {
+      "name": "Politique de confidentialité",
+      "url": "/confidentialite"
+    },
+    {
+      "name": "Notice boutique (HTML)",
+      "url": "/confidentialite.html"
+    }
+  ]
+}

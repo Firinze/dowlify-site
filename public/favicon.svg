@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <!-- Fond de l'icône -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5412DC" />
+      <stop offset="55%" stop-color="#38119E" />
+      <stop offset="100%" stop-color="#05C7B2" />
+    </linearGradient>
+
+    <!-- Vague turquoise sur le D blanc -->
+    <linearGradient id="iconTeal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22F0CB" />
+      <stop offset="100%" stop-color="#059B9A" />
+    </linearGradient>
+
+    <!-- Flèche centrale violet foncé -->
+    <linearGradient id="arrowDark" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#350B8C" />
+      <stop offset="100%" stop-color="#1E0754" />
+    </linearGradient>
+
+    <clipPath id="iconDClip">
+      <path d="M 88 52 H 134 A 68 68 0 0 1 202 120 A 68 68 0 0 1 134 188 H 86 A 16 16 0 0 1 70 172 V 106 H 84 V 88 H 70 V 70 H 88 Z" />
+    </clipPath>
+  </defs>
+
+  <!-- Conteneur carré arrondi (style Windows / Store) -->
+  <rect width="256" height="256" rx="56" fill="url(#bgGrad)" />
+
+  <!-- Pixels détachés blancs -->
+  <rect x="52" y="52" width="10" height="10" rx="2" fill="#FFFFFF" />
+  <rect x="42" y="76" width="12" height="12" rx="2" fill="#FFFFFF" />
+  <rect x="60" y="68" width="14" height="14" rx="2" fill="#FFFFFF" />
+  <rect x="60" y="90" width="14" height="14" rx="2" fill="#FFFFFF" />
+
+  <!-- Corps du D (Blanc + vague Turquoise) -->
+  <g clip-path="url(#iconDClip)">
+    <rect x="65" y="45" width="145" height="150" fill="#FFFFFF" />
+    <path d="M 65 162 Q 138 156 172 104 L 210 104 L 210 195 L 65 195 Z" fill="url(#iconTeal)" />
+  </g>
+
+  <!-- Flèche centrale -->
+  <path d="M 106 86 H 132 A 8 8 0 0 1 140 94 V 124 H 156 A 3.5 3.5 0 0 1 158.5 130 L 122.5 166 A 3.5 3.5 0 0 1 117.5 166 L 81.5 130 A 3.5 3.5 0 0 1 84 124 H 100 V 92 A 6 6 0 0 1 106 86 Z" fill="url(#arrowDark)" />
+</svg>

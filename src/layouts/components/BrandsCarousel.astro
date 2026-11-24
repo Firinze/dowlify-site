@@ -1,0 +1,37 @@
+---
+import ImageMod from "@/layouts/components/ImageMod.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import type { BrandsSection } from "@/types";
+
+const brandsInfo = await getListPage("brandsSection", "brands");
+const brandsData: BrandsSection = brandsInfo.data;
+if (!brandsData.enable) return;
+---
+
+{
+  brandsData.enable && (
+    <section class="section-sm pt-16 xl:pt-20">
+      <div class="container">
+        <div class="text-center mb-10">
+          <p class="text-text-light text-base" set:html={brandsData.title} />
+        </div>
+        <div class="flex gap-8 xl:gap-x-14 flex-wrap justify-center items-center">
+          {
+            brandsData.images.map((img) => (
+              <div class="flex items-center gap-3 text-text">
+                <ImageMod
+                  src={img.src}
+                  alt={img.alt}
+                  width={36}
+                  height={36}
+                  class="size-9"
+                />
+                <span class="text-sm font-medium text-text-light">{img.alt}</span>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  )
+}

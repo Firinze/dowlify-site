@@ -1,0 +1,66 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageHeader from "@/layouts/components/PageHeader.astro";
+import { withBase } from "@/lib/utils/href";
+---
+
+<Base
+  title="Politique de confidentialité · Dowlify"
+  description="Engagements de confidentialité de Dowlify et de son extension pour Microsoft Edge et Google Chrome, édités par Digiplex Agency."
+>
+  <PageHeader
+    title="Politique de <strong>confidentialité</strong>"
+    subtitle="Vos fichiers, vos liens et votre historique restent strictement sur votre ordinateur."
+  />
+
+  <section class="section pt-10">
+    <div class="container max-w-4xl space-y-8 text-text">
+      <div class="bg-light border border-border rounded-3xl p-8 space-y-4">
+        <h2 class="text-h5 font-bold text-white">1. Éditeur et portée</h2>
+        <p>
+          Dowlify est édité par <strong>Digiplex Agency</strong> (Cotonou, Bénin). Cette politique couvre l'application Windows, l'installeur DowlifySetup et l'extension pour Microsoft Edge et Google Chrome.
+        </p>
+      </div>
+
+      <div class="bg-light border border-border rounded-3xl p-8 space-y-4">
+        <h2 class="text-h5 font-bold text-white">2. Aucune collecte externe</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Aucun compte utilisateur, nom, e-mail ni identifiant personnel n'est demandé ou collecté.</li>
+          <li>Aucune télémétrie ni historique de téléchargement n'est transmis à Digiplex Agency ou à un tiers.</li>
+          <li>Les seules connexions sortantes vont vers les sites depuis lesquels vous téléchargez vos fichiers et vers les serveurs de mise à jour officiels Dowlify lors du contrôle de version.</li>
+        </ul>
+      </div>
+
+      <div class="bg-light border border-border rounded-3xl p-8 space-y-4">
+        <h2 class="text-h5 font-bold text-white">3. Stockage local sur Windows</h2>
+        <p>
+          Votre historique, vos règles de classement et vos paramètres restent dans <code>%LOCALAPPDATA%\Dowlify</code>. Au moment de la désinstallation, vous choisissez librement de conserver ou d'effacer ces données locales.
+        </p>
+      </div>
+
+      <div class="bg-light border border-border rounded-3xl p-8 space-y-4">
+        <h2 class="text-h5 font-bold text-white">4. Permissions de l'extension Edge et Chrome</h2>
+        <ul class="list-disc pl-6 space-y-2">
+          <li><code>downloads</code> : détecter un téléchargement démarré dans le navigateur pour proposer son transfert vers Dowlify.</li>
+          <li><code>nativeMessaging</code> : transmettre localement les métadonnées à votre application Windows sans passer par un serveur externe.</li>
+          <li><code>webRequest</code> et <code>webNavigation</code> : récupérer le nom exact du fichier et les en-têtes techniques nécessaires à la reprise.</li>
+          <li><code>cookies</code> : relayer ponctuellement le cookie de votre session ouverte lorsqu'un téléchargement légitime l'exige, sans stockage externe.</li>
+          <li><code>storage</code> : conserver localement vos préférences d'interception et exceptions de sites.</li>
+        </ul>
+      </div>
+
+      <div class="bg-light border border-border rounded-3xl p-8 space-y-4">
+        <h2 class="text-h5 font-bold text-white">5. Presse-papiers et BitTorrent</h2>
+        <p>
+          La surveillance du presse-papiers est désactivée par défaut. En cas d'ajout explicite d'un lien magnet ou d'un fichier torrent, les transferts pair-à-pair s'effectuent directement selon le protocole BitTorrent sans serveur intermédiaire de Digiplex Agency.
+        </p>
+        <p class="text-sm text-text-dark">
+          La version HTML autonome utilisée par les fiches de boutique d'extensions reste disponible à l'adresse{" "}
+          <a href={withBase("/confidentialite.html")} class="text-primary underline">
+            /confidentialite.html
+          </a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
