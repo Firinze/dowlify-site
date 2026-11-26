@@ -1,5 +1,6 @@
 ---
 import ImageMod from "@/layouts/components/ImageMod.astro";
+import { LATEST_RELEASE } from "@/data/releases";
 import { getListPage } from "@/lib/contentParser.astro";
 import { withBase } from "@/lib/utils/href";
 import type { OurStorySection } from "@/types";
@@ -8,6 +9,9 @@ const ourStoryEntry = await getListPage("ourStorySection", "our-story");
 const ourStoryData: OurStorySection = ourStoryEntry.data;
 if (!ourStoryData.enable) return;
 const ctaIsInstaller = Boolean(ourStoryData.button?.link?.includes("DowlifySetup"));
+const ctaHref = ctaIsInstaller
+  ? LATEST_RELEASE.downloadUrl
+  : withBase(ourStoryData.button?.link || "");
 ---
 
 <section class="section overflow-hidden">
@@ -78,7 +82,7 @@ const ctaIsInstaller = Boolean(ourStoryData.button?.link?.includes("DowlifySetup
                   ourStoryData.button.link && (
                     <div class="mt-12 flex justify-center">
                       <a
-                        href={withBase(ourStoryData.button.link)}
+                        href={ctaHref}
                         data-dowlify-download={ctaIsInstaller ? "" : undefined}
                         class="btn btn-primary py-4"
                       >

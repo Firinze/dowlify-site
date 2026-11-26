@@ -1,5 +1,6 @@
 ---
 import ImageMod from "@/layouts/components/ImageMod.astro";
+import { LATEST_RELEASE } from "@/data/releases";
 import { withBase } from "@/lib/utils/href";
 import { markdownify } from "@/lib/utils/textConverter";
 
@@ -8,8 +9,7 @@ interface Props {
 }
 
 const { lead_generation } = Astro.props;
-const installerHref =
-  "https://github.com/Firinze/dowlify-site/releases/latest/download/DowlifySetup_1.0.0_x64.exe";
+const installerHref = LATEST_RELEASE.downloadUrl;
 const edgeHref =
   "https://microsoftedge.microsoft.com/addons/detail/pjomjfkfiagbbpdfklanamggblbfiakn";
 ---

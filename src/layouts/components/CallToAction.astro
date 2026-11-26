@@ -1,5 +1,6 @@
 ---
 import Badge from "./Badge.astro";
+import { LATEST_RELEASE } from "@/data/releases";
 import { getListPage } from "@/lib/contentParser.astro";
 import { withBase } from "@/lib/utils/href";
 import type { CtaSection } from "@/types";
@@ -8,6 +9,9 @@ const ctaEntry = await getListPage("ctaSection", "call-to-action");
 const ctaData: CtaSection = ctaEntry.data;
 if (!ctaData.enable) return;
 const isInstaller = Boolean(ctaData.button?.link?.includes("DowlifySetup"));
+const ctaHref = isInstaller
+  ? LATEST_RELEASE.downloadUrl
+  : withBase(ctaData.button?.link || "");
 ---
 
 <section class="section">
@@ -22,7 +26,7 @@ const isInstaller = Boolean(ctaData.button?.link?.includes("DowlifySetup"));
         {
           ctaData.button && ctaData.button.enable && ctaData.button.link && (
             <a
-              href={withBase(ctaData.button.link)}
+              href={ctaHref}
               data-dowlify-download={isInstaller ? "" : undefined}
               class="btn btn-primary mt-9"
             >

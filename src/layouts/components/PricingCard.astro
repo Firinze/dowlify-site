@@ -1,4 +1,5 @@
 ---
+import { LATEST_RELEASE } from "@/data/releases";
 import { withBase } from "@/lib/utils/href";
 
 interface Feature {
@@ -29,6 +30,7 @@ const {
 } = Astro.props;
 
 const isInstaller = button.link.includes("DowlifySetup");
+const buttonHref = isInstaller ? LATEST_RELEASE.downloadUrl : withBase(button.link);
 ---
 
 <div
@@ -65,10 +67,10 @@ const isInstaller = button.link.includes("DowlifySetup");
     button.enable && (
       <div class="mt-8 mb-9">
         <a
-          href={withBase(button.link)}
+          href={buttonHref}
           data-dowlify-download={isInstaller ? "" : undefined}
-          target={button.link.startsWith("http") ? "_blank" : undefined}
-          rel={button.link.startsWith("http") ? "noopener noreferrer" : undefined}
+          target={buttonHref.startsWith("http") ? "_blank" : undefined}
+          rel={buttonHref.startsWith("http") ? "noopener noreferrer" : undefined}
           class={`btn w-full text-center ${is_featured ? "btn-primary" : "btn-outline"}`}
         >
           {button.label}

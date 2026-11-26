@@ -4,6 +4,7 @@ import Logo from "@/components/Logo.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
+import { LATEST_RELEASE } from "@/data/releases";
 import { withBase } from "@/lib/utils/href";
 import { markdownify } from "@/lib/utils/textConverter";
 import type { Menu, SocialType } from "@/types";
@@ -27,9 +28,9 @@ const { main: socialLinks } = social as SocialType;
         <p class="mt-6 text-base">{config.params.footer_tagline}</p>
         <a
           class="link mt-6 inline-block underline text-base"
-          href={withBase("/versions/1-0-0")}
+          href={withBase(`/versions/${LATEST_RELEASE.slug}`)}
         >
-          Dernière version : Dowlify 1.0.0
+          Dernière version : Dowlify {LATEST_RELEASE.version}
         </a>
       </div>
 

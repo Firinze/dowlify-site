@@ -14,6 +14,7 @@ import CallToAction from "@/layouts/components/CallToAction.astro";
 import VideoShowcase from "@/layouts/components/VideoShowcase.astro";
 import LeadGeneration from "@/layouts/components/LeadGeneration.astro";
 import { getListPage } from "@/lib/contentParser.astro";
+import { LATEST_RELEASE } from "@/data/releases";
 import { withBase } from "@/lib/utils/href";
 import { markdownify } from "@/lib/utils/textConverter";
 import Testimonial from "@/partials/Testimonial.astro";
@@ -24,8 +25,14 @@ const homepage = await getListPage("homepage", "-index");
 const homepageData: Homepage = homepage.data;
 const primaryIsInstaller =
   homepageData.banner.button_primary.link.includes("DowlifySetup");
+const primaryHref = primaryIsInstaller
+  ? LATEST_RELEASE.downloadUrl
+  : withBase(homepageData.banner.button_primary.link);
 const processIsInstaller =
   homepageData.growth_process.button.link.includes("DowlifySetup");
+const processHref = processIsInstaller
+  ? LATEST_RELEASE.downloadUrl
+  : withBase(homepageData.growth_process.button.link);
 ---
 
 <Base>
@@ -48,7 +55,7 @@ const processIsInstaller =
             <a
               class="btn btn-primary"
               rel="noopener noreferrer"
-              href={withBase(homepageData.banner.button_primary.link)}
+              href={primaryHref}
               data-dowlify-download={primaryIsInstaller ? "" : undefined}
             >
               {homepageData.banner.button_primary.label}
@@ -479,7 +486,7 @@ const processIsInstaller =
               {homepageData.growth_process.button.enable && (
                 <div class="flex justify-center mt-10 xl:mt-18">
                   <a
-                    href={withBase(homepageData.growth_process.button.link)}
+                    href={processHref}
                     data-dowlify-download={processIsInstaller ? "" : undefined}
                     class="btn btn-primary"
                   >

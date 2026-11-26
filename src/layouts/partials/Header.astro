@@ -2,6 +2,7 @@
 import Logo from "@/components/Logo.astro";
 import config from "@/config/config.json";
 import menu from "@/config/menu.json";
+import { LATEST_RELEASE } from "@/data/releases";
 import { withBase } from "@/lib/utils/href";
 
 export interface ChildNavigationLink {
@@ -20,6 +21,9 @@ const { main }: { main: NavigationLink[] } = menu;
 const { navigation_button, settings } = config;
 const { pathname } = Astro.url;
 const navBtnIsInstaller = navigation_button.link.includes("DowlifySetup");
+const navBtnHref = navBtnIsInstaller
+  ? LATEST_RELEASE.downloadUrl
+  : withBase(navigation_button.link);
 ---
 
 <header
@@ -128,13 +132,13 @@ const navBtnIsInstaller = navigation_button.link.includes("DowlifySetup");
           <li class="pt-4 inline-block lg:hidden">
             <a
               class="btn-outline btn-sm"
-              href={withBase(navigation_button.link)}
+              href={navBtnHref}
               data-dowlify-download={navBtnIsInstaller ? "" : undefined}
               target={
-                navigation_button.link.startsWith("http") ? "_blank" : "_self"
+                navBtnHref.startsWith("http") ? "_blank" : "_self"
               }
               rel={
-                navigation_button.link.startsWith("http")
+                navBtnHref.startsWith("http")
                   ? "noopener noreferrer"
                   : ""
               }
@@ -151,13 +155,13 @@ const navBtnIsInstaller = navigation_button.link.includes("DowlifySetup");
         navigation_button.enable && (
           <a
             class="btn btn-primary hidden lg:inline-block"
-            href={withBase(navigation_button.link)}
+            href={navBtnHref}
             data-dowlify-download={navBtnIsInstaller ? "" : undefined}
             target={
-              navigation_button.link.startsWith("http") ? "_blank" : "_self"
+              navBtnHref.startsWith("http") ? "_blank" : "_self"
             }
             rel={
-              navigation_button.link.startsWith("http")
+              navBtnHref.startsWith("http")
                 ? "noopener noreferrer"
                 : ""
             }

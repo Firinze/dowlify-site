@@ -17,7 +17,7 @@ plans:
     button:
       enable: true
       label: "Télécharger Dowlify"
-      link: "https://github.com/Firinze/dowlify-site/releases/latest/download/DowlifySetup_1.0.0_x64.exe"
+      link: "https://github.com/Firinze/dowlify-site/releases/download/v1.0.1/DowlifySetup_1.0.1_x64.exe"
     description: "Le gestionnaire complet pour Windows 10 et Windows 11 en 64 bits."
     features:
       - label: "Téléchargement adaptatif et reprise fiable"
@@ -38,7 +38,7 @@ plans:
     button:
       enable: true
       label: "Télécharger Dowlify"
-      link: "https://github.com/Firinze/dowlify-site/releases/latest/download/DowlifySetup_1.0.0_x64.exe"
+      link: "https://github.com/Firinze/dowlify-site/releases/download/v1.0.1/DowlifySetup_1.0.1_x64.exe"
     description: "L'expérience complète entre votre navigateur et votre PC Windows."
     features:
       - label: "Application de bureau Windows 10 et 11"
