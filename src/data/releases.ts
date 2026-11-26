@@ -20,6 +20,35 @@ export const LATEST_MANIFEST_URL =
 
 export const RELEASES: ReleaseEntry[] = [
   {
+    slug: "1-0-1",
+    version: "1.0.1",
+    date: "26 novembre 2026",
+    channel: "Stable",
+    platform: "Windows 11 et Windows 10 (64 bits)",
+    fileName: "DowlifySetup_1.0.1_x64.exe",
+    sizeDisplay: "25,07 Mo",
+    sizeBytes: "26 283 520 octets",
+    downloadUrl:
+      "https://github.com/Firinze/dowlify-site/releases/download/v1.0.1/DowlifySetup_1.0.1_x64.exe",
+    sha256: "71d9a816017a0af0d519a83c0fba0be372591cb4d5e09e8095ec8811a385c4b8",
+    summary:
+      "Correctif de stabilité et de détection : achèvement fiable des fichiers sans support Range (audio Pixabay), routage complet des liens magnet et .torrent, et bouton audio dédié dans l'extension Edge et Chrome.",
+    added: [
+      "Bouton flottant Dowlify sur les balises audio visibles et sur les lecteurs audio JavaScript (ex. Pixabay) dans l'extension Edge et Chrome 1.0.1, avec détection du format réel (MP3, WAV, M4A, OGG, FLAC, AAC, OPUS).",
+    ],
+    improved: [
+      "Pré-remplissage immédiat du nom d'affichage (dn) d'un lien magnet pendant la récupération des fichiers P2P dans Ajouter un téléchargement.",
+      "Bouton « Réessayer » affiché directement en cas d'échec d'analyse torrent et prise en charge des liens magnet:? par le détecteur de presse-papiers.",
+      "Reprise automatique propre depuis l'octet 0 lorsqu'un serveur sans Range répond HTTP 200 OK sur un transfert interrompu.",
+    ],
+    fixed: [
+      "Correction du décalage d'un octet dans le moteur mono-connexion sans support Range qui maintenait les fichiers audio Pixabay en attente (« Calcul… ») avant de les marquer en échec après 6 tentatives.",
+      "Routage des liens magnet et des fichiers .torrent interceptés directement vers la fenêtre d'ajout Torrent au lieu de la fenêtre de confirmation HTTP.",
+      "Transmission de l'argument magnet: ou .torrent à l'instance Dowlify déjà ouverte lorsqu'un lien est ouvert via le protocole Windows.",
+      "Consommation automatique de la source torrent en attente au démarrage de l'application React et à la réception de l'événement open-torrent-source.",
+    ],
+  },
+  {
     slug: "1-0-0",
     version: "1.0.0",
     date: "24 novembre 2026",
