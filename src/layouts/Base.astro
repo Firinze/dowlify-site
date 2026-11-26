@@ -146,5 +146,15 @@ const { title, meta_title, description, image, noindex, canonical } =
           .catch(function () {});
       })();
     </script>
+
+    {
+      import.meta.env.PROD && (
+        <script
+          is:inline
+          type="module"
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "e328f24377bb4046923c1ef1d12e81ed"}'></script>
+      )
+    }
   </body>
 </html>
