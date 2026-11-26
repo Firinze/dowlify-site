@@ -26,17 +26,19 @@ export const RELEASES: ReleaseEntry[] = [
     channel: "Stable",
     platform: "Windows 11 et Windows 10 (64 bits)",
     fileName: "DowlifySetup_1.0.1_x64.exe",
-    sizeDisplay: "25,07 Mo",
-    sizeBytes: "26 283 520 octets",
+    sizeDisplay: "25,08 Mo",
+    sizeBytes: "26 301 440 octets",
     downloadUrl:
       "https://github.com/Firinze/dowlify-site/releases/download/v1.0.1/DowlifySetup_1.0.1_x64.exe",
-    sha256: "71d9a816017a0af0d519a83c0fba0be372591cb4d5e09e8095ec8811a385c4b8",
+    sha256: "30f83a860feeb8b39f4cad8a9a7cd47ad9a6e589cd041a68886225122ac3d968",
     summary:
-      "Correctif de stabilité et de détection : achèvement fiable des fichiers sans support Range (audio Pixabay), routage complet des liens magnet et .torrent, et bouton audio dédié dans l'extension Edge et Chrome.",
+      "Correctif de stabilité et de détection : achèvement fiable des fichiers sans support Range (audio Pixabay), routage complet des liens magnet et .torrent, bouton audio dédié dans l'extension, et alertes de mise à jour en arrière-plan.",
     added: [
       "Bouton flottant Dowlify sur les balises audio visibles et sur les lecteurs audio JavaScript (ex. Pixabay) dans l'extension Edge et Chrome 1.0.1, avec détection du format réel (MP3, WAV, M4A, OGG, FLAC, AAC, OPUS).",
     ],
     improved: [
+      "Vérification native des mises à jour en arrière-plan toutes les 2 heures (même fenêtre réduite dans la zone de notification) et au retour au premier plan ou à la reconnexion réseau.",
+      "Bandeau de rappel persistant en haut de l'application et entrée « Mise à jour disponible » dans le menu de l'icône Windows lorsqu'une nouvelle version attend.",
       "Pré-remplissage immédiat du nom d'affichage (dn) d'un lien magnet pendant la récupération des fichiers P2P dans Ajouter un téléchargement.",
       "Bouton « Réessayer » affiché directement en cas d'échec d'analyse torrent et prise en charge des liens magnet:? par le détecteur de presse-papiers.",
       "Reprise automatique propre depuis l'octet 0 lorsqu'un serveur sans Range répond HTTP 200 OK sur un transfert interrompu.",

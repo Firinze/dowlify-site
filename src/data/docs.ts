@@ -73,6 +73,7 @@ export const DOC_PAGES: DocPage[] = [
           "Mode Demander (recommandé par défaut) : à chaque téléchargement compatible, vous choisissez « Démarrer », « Télécharger plus tard » ou « Laisser au navigateur ».",
           "Mode Automatique : les types de fichiers autorisés sont confiés directement à Dowlify.",
           "Menu contextuel uniquement : lancez Dowlify manuellement par clic droit sur un lien ou depuis la fenêtre de l'extension.",
+          "Détection média et audio : un bouton « Télécharger avec Dowlify » apparaît sur les lecteurs vidéo et audio compatibles (ainsi que sur les flux audio joués en arrière-plan).",
         ],
       },
       {
@@ -159,7 +160,7 @@ export const DOC_PAGES: DocPage[] = [
       {
         heading: "1. Mises à jour automatiques et manuelles",
         paragraphs: [
-          "Au démarrage de l'application, Dowlify peut vérifier s'il existe une nouvelle version. Vous recevez alors une notification Windows discrète ainsi qu'une fenêtre claire indiquant la version proposée.",
+          "Au démarrage de l'application puis toutes les 2 heures en arrière-plan (ainsi qu'au retour au premier plan), Dowlify vérifie automatiquement s'il existe une nouvelle version. Vous recevez une notification Windows si la fenêtre est en arrière-plan, un bandeau de rappel persistant dans l'application, et un accès direct depuis le menu de la zone de notification.",
           "Lorsque vous lancez la mise à jour, Dowlify vérifie l'empreinte SHA-256 du nouvel installeur avant de fermer l'application et de lancer DowlifySetup en mode mise à jour.",
         ],
       },
